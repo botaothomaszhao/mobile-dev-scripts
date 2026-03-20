@@ -13,11 +13,11 @@ Tampermonkey scripts that bring developer-tool capabilities (console output, net
 
 ## How to Use
 
-1. Install the [Tampermonkey](https://www.tampermonkey.net/) browser extension on your mobile browser (or desktop browser for testing).
+1. Install the [Tampermonkey](https://www.tampermonkey.net/) browser extension on your mobile browser (or desktop browser for testing). Some browsers support userscripts natively without an extension.
 2. Open the Tampermonkey dashboard and create a new script.
 3. Copy the contents of the script you want from the `scripts/` folder and paste it into the editor.
-4. Save the script. It will run automatically on every page that matches `*://*/*`.
-5. Open any web page and the overlay panel will appear, showing the relevant debug information.
+4. Save the script. It will run automatically on every page.
+5. Open any web page and the overlay panel will appear, showing the relevant debug information. Note that the panel will cover part of the page.
 
 ## Notes
 
