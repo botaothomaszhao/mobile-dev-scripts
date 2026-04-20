@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         mobile-dev-键盘事件调试器
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  在页面上显示键盘事件参数，用于调试移动端键盘行为
 // @author       AI
 // @match        *://*/*
@@ -119,19 +119,20 @@
     // 格式化事件信息
     function formatEvent(e, eventType) {
         const timestamp = new Date().toLocaleTimeString();
+        const modifiers = [];
+        if (e.shiftKey) modifiers.push('shift');
+        if (e.ctrlKey) modifiers.push('ctrl');
+        if (e.altKey) modifiers.push('alt');
+        if (e.metaKey) modifiers.push('meta');
+
         return `
 <div style="margin-bottom: 8px; padding: 5px; background: rgba(255,255,255,0.1); border-radius: 3px;">
     <div style="color: #4CAF50; font-weight: bold;">${eventType} #${++eventCount}</div>
     <div style="color: #FFC107;">时间: ${timestamp}</div>
     <div>key: "${e.key}" (code: ${e.code})</div>
-    <div style="color: ${e.shiftKey ? '#FF5252' : '#81C784'};">
-        shiftKey: ${e.shiftKey} ${e.shiftKey ? '✓' : '✗'}
-    </div>
-    <div>ctrlKey: ${e.ctrlKey}</div>
-    <div>altKey: ${e.altKey}</div>
-    <div>metaKey: ${e.metaKey}</div>
+    <div>repeat: ${e.repeat}</div>
+    <div>modifiers: ${modifiers.length ? modifiers.join(', ') : '-'}</div>
     <div>keyCode: ${e.keyCode} (which: ${e.which})</div>
-    <div>location: ${e.location}</div>
 </div>`;
     }
 
